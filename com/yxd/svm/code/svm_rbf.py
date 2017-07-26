@@ -26,7 +26,7 @@ print  len(X_test)
 print len(y_test)
 
 #开始使用svm 线性核函数训练
-svm_mode = svm.SVC(kernel = 'sigmoid')
+svm_mode = svm.SVC(kernel = 'rbf')
 svm_mode.fit(X_train,y_train)
 score = svm_mode.score(X_test,y_test)
 print score
