@@ -34,10 +34,12 @@ svmkfp = [
 #图形标题
 titles = 'kernel=linear', 'kernel=linearandWeight=100', 'kernel=rbf, W=0.5', 'kernel=rbf, W=10'
 
-x1_min, x1_max = x[:, 0].min(), x[:, 0].max()  # x轴的范围
-x2_min, x2_max = x[:, 1].min(), x[:, 1].max()  # y轴的范围
-x1, x2 = np.mgrid[x1_min:x1_max, x2_min:x2_max]  # 生成网格采样点
-grid_test = np.stack((x1.flat, x2.flat), axis=1)  # 测试点
+x1_min, x1_max = x[:, 0].min(), x[:, 0].max()  # x0列范围
+x2_min, x2_max = x[:, 1].min(), x[:, 1].max()  # x1列的范围
+x1, x2 = np.mgrid[x1_min:x1_max:500j, x2_min:x2_max:500j]  # 生成网格采样点
+
+print x1.flat
+grid_test = np.stack((x1.flat, x2.flat), axis=1)  # 生成一行N列的数据测试
 
 #颜色区分
 cm_light = matplotlib.colors.ListedColormap(['#77E0A0', '#FF8080'])
@@ -54,18 +56,5 @@ for i, svmkfp in enumerate(svmkfp):
     print '正确率 ：\t', precision_score(y, y_hat, pos_label=1)
     print '召回率：\t', recall_score(y, y_hat, pos_label=1)
     print 'F值  ：\t', f1_score(y, y_hat, pos_label=1)
- # 画图
-    plt.subplot(2, 2, i+1)
-    grid_hat = svmkfp.predict(grid_test)
-    grid_hat = grid_hat.reshape(x1.shape)
-    plt.pcolormesh(x1, x2, grid_hat, cmap=cm_light, alpha=0.8)
-    plt.scatter(x[:, 0], x[:, 1], c=y, edgecolors='k', cmap=cm_dark)      # 样本的显示
-    plt.xlim(x1_min, x1_max)
-    plt.ylim(x2_min, x2_max)
-    plt.title(titles[i])
-    plt.grid()
-plt.suptitle('kfpara', fontsize=12)
-plt.tight_layout(1.5)
-plt.subplots_adjust(top=0.92)
-plt.show()
+
 
