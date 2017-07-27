@@ -3,12 +3,12 @@
 
 # selenium.common.exceptions.WebDriverException: Message: 'geckodriver'\
 # executable needs to be in PATH.
-# https://github.com/mozilla/geckodriver/  下载完配置这个的环境变量
+# https://github.com/mozilla/geckodriver/releases 下载完配置这个的环境变量
 
 from selenium import webdriver
 from PIL import Image
 import datetime
-
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 
 driver = webdriver.Firefox() # 创建webdriver对象
 url = "http://piaofang.maoyan.com/movie/248683?_v_=yes" # 定义目标url
