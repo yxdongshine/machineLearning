@@ -15,7 +15,8 @@ mpl.rcParams['axes.unicode_minus']=False
 
 np.random.seed(0)
 X = np.r_[np.random.randn(10, 2) + [1, 1], np.random.randn(10, 2)]
-y = [1] * 10 + [-1] * 10
+# 从最外层去掉中括号 分号分割数记做行，以此类推为列 20行2列
+y = [1] * 10 + [-1] * 10 #20行1列
 print X.shape, y.__len__()
 print X
 print ("----------------------")
@@ -49,15 +50,19 @@ clf_no_weights.fit(X, y)
 
 #定义画图 函数
 def plot_decision_function(classifier, sample_weight, axis, title):
-    # plot the decision function
+    # plot the decision function  http://blog.csdn.net/grey_csdn/article/details/69663432
     xx, yy = np.meshgrid(np.linspace(-4, 5, 500), np.linspace(-4, 5, 500))
+    # np.c_按照列合并
 
+    print ("-----------np.c-----------")
+    print np.c_[xx.ravel(), yy.ravel()].shape
     Z = classifier.decision_function(np.c_[xx.ravel(), yy.ravel()])
     Z = Z.reshape(xx.shape)
 
-    cm_light = matplotlib.colors.ListedColormap(['#77E0A0', 'y'])
+    cm_light = matplotlib.colors.ListedColormap(['blue', '#777777'])
     cm_dark = matplotlib.colors.ListedColormap(['g', 'r'])
     # plot the line, the points, and the nearest vectors to the plane
+    #http://blog.163.com/shikang999@126/blog/static/172624896201133094039841/
     axis.contourf(xx, yy, Z, alpha=0.1, cmap=cm_light)
     axis.scatter(X[:, 0], X[:, 1], c=y, s=100 * sample_weight, alpha=0.9,
                  cmap=cm_dark)
@@ -69,8 +74,8 @@ def plot_decision_function(classifier, sample_weight, axis, title):
 fig, axes = plt.subplots(1, 2, figsize=(14, 6))
 plot_decision_function(clf_no_weights, sample_weight_constant, axes[0],
                        "Constant weights")
-#plot_decision_function(clf_weights, sample_weight_last_ten, axes[1],
-#                     "Modified weights")
+plot_decision_function(clf_weights, sample_weight_last_ten, axes[1],
+                     "Modified weights")
 
 plt.show()
 
