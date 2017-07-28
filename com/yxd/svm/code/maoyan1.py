@@ -41,7 +41,7 @@ def crop_image(image_path, pattern_xpath, crop_path, scroll_top=90):
     right = 450
     bottom = 180
     print (left,top,right,bottom)
-    # 打开图片，抠取相应区域并存储
+    # 抠取相应区域并存储打开图片，
     im = Image.open(image_path)
     im = im.crop((left, top, right, bottom))
     im.save(crop_path)
@@ -51,19 +51,19 @@ def crop_image(image_path, pattern_xpath, crop_path, scroll_top=90):
 now = datetime.datetime.now()
 now_sign = str(now.day)+str(now.hour)+str(now.minute)+str(now.second)
 # 启动截图函数，获取当前页面
-snap_shot_path_1 = "snap_shot/maoyan_{0}_{1}.png".format('1', now_sign)
+snap_shot_path_1 = "D:/yxd/tool/pythonproject/machineLearning/com/yxd/svm/data/maoyan_{0}_{1}.png".format('1', now_sign)
 #snap_shot_path_2 = "snap_shot/maoyan_{0}_{1}.png".format('2', now_sign)
 snap_shot(url, snap_shot_path_1, scroll_top=0)
 #snap_shot(url, snap_shot_path_2, scroll_top=720)
 # 启动抠图函数
 
-pattern = "/html/body/div[2]/div/section[1]/div[1]/div[2]/div[2]/p[5]"
-crop_path = "snap_shot/crop/current_piaofang7.png"
+pattern = "/html/body/div[2]/div/div[1]/section[1]/div[1]/div[2]/div[2]/div/a/p[2]/i"
+crop_path = "D:/yxd/tool/pythonproject/machineLearning/com/yxd/svm/data/current_piaofang7.png"
 crop_image(snap_shot_path_1, pattern, crop_path, scroll_top=0)
 
 
 def single_digit():
-    im = Image.open("snap_shot/crop/current_piaofang7.png")
+    im = Image.open(crop_path)
     # 转换为灰度图像
     im = im.convert('L')
 
@@ -93,7 +93,7 @@ def single_digit():
     # 对每部电影，按位存储图片
     #for k in range(0, lenth-2):
     #locals()['digit_2'].save("snap_shot/train/digit_{0}_{1}_{2}.png".format(k, name, now_sign))
-    out.save("snap_shot/train/digit_1.png")
+    out.save("D:/yxd/tool/pythonproject/machineLearning/com/yxd/svm/data/digit_1.png")
     # 启动切图函数
 
 single_digit()
