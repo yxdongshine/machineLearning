@@ -1,6 +1,5 @@
 #coding=utf-8
 import numpy as np
-import numpy as np
 import matplotlib.pyplot as plt
 from sklearn import  svm
 import matplotlib.colors
@@ -34,17 +33,6 @@ np.r_[a,b]
 np.c_[a,b]
 np.c_[a,[0,0,0],b]
 
-
-[x,y,z]=peaks(25);
-subplot(2,2,1);
-contour(z);
-title('contour函数效果');
-subplot(2,2,2);
-contourf(x,y,z);
-title('contourf函数效果');
-subplot(2,2,3);
-pcolor(x,y,z);
-title('pcolor函数效果');
-subplot(2,2,4);
-contour3(x,y,z);
-title('contour3函数效果');
+print"*********************"
+bndata = np.random.randint(2, size=(6, 100))
+print bndata.shape
