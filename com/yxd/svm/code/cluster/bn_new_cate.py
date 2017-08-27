@@ -25,7 +25,7 @@ remove = ('headers', 'footers', 'quotes')
 categories = 'alt.atheism', 'talk.religion.misc', 'comp.graphics', 'sci.space'
 data_train = fetch_20newsgroups(data_home='../../data/',subset='train', categories=categories, shuffle=True, random_state=0, remove=remove)
 data_test  = fetch_20newsgroups(data_home='../../data/',subset='test', categories=categories, shuffle=True, random_state=0, remove=remove)
-print u"完成数据加载过程.耗时:%.3fs" % (time() - load_start_time)
+print u"完成数据加载过程耗时:%.3fs" % (time() - load_start_time)
 
 
 #查看测试数据和训练数据大小

@@ -29,7 +29,7 @@ km = KMeans(n_clusters=center_len)
 kmt = time.time()
 km.fit(xs)
 total_time = time.time() - kmt
-print "km时间：%.4fs" % total_time
+print "km时间" + total_time
 #输出指标
 print "所用样本到中心点的总距离和：",km.inertia_
 print "中心点的平均距离：",km.inertia_ / N
